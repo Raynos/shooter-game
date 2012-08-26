@@ -66,7 +66,7 @@ function Map() {
         */
         function collision(block, list) {
             if (!list) {
-                return true
+                return false
             }
 
             return list.some(checkCollision, block)
