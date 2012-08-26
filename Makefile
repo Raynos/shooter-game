@@ -1,0 +1,2 @@
+run:
+	browserify-server

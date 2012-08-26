@@ -1,0 +1,33 @@
+{
+  "name": "Shooter game",
+  "version": "0.0.1",
+  "description": "A multiplayer top down shooter",
+  "keywords": [],
+  "author": "Raynos <raynos2@gmail.com>",
+  "repository": "git://github.com/Raynos/Shooter game.git",
+  "main": "index",
+  "homepage": "https://github.com/Raynos/Shooter game",
+  "contributors": [
+    {
+      "name": "Jake Verbaten"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/Raynos/Shooter game/issues",
+    "email": "raynos2@gmail.com"
+  },
+  "dependencies": {
+    "browserify-server": "~1.1.1",
+    "delta-stream": "~0.1.0",
+    "live-reload": "0.0.1",
+    "through": "~0.1.4"
+  },
+  "devDependencies": {},
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://github.com/Raynos/Shooter game/raw/master/LICENSE"
+    }
+  ],
+  "scripts": {}
+}
