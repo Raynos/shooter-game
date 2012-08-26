@@ -38,7 +38,7 @@ function Map() {
                 , loc = getGrid(newX, newY)
                 , list = blocks[loc]
 
-            var isValid = collision(entity, list)
+            var isValid = !collision(entity, list)
 
             if (isValid) {
                 var previousLoc = getGrid(entity.x, entity.y)
@@ -61,16 +61,23 @@ function Map() {
             }
         }
 
+        /*
+            Returns true if there is a collison
+        */
         function collision(block, list) {
             if (!list) {
                 return true
             }
 
-            return list.every(function (other) {
-                if (block === other) {
-                    return true
-                }
-            })
+            return list.some(checkCollision, block)
+        }
+
+        function checkCollision(other) {
+            if (this === other) {
+                return false
+            }
+
+            return true
         }
     }
 
