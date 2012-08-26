@@ -1,4 +1,5 @@
 var Widget = require("./widget")
+    , through = require("through")
 
 module.exports = Map
 
@@ -13,8 +14,20 @@ function Map() {
 
     return map
 
+    /*
+        When an entity emit deltas in position we pipe it through a
+            validator which checks collisions and then
+            pipe it back into the entity if the validator thinks there are
+            no collisions
+    */
     function addEntity(entity) {
+        entity.pipe(through(detectCollisions)).pipe(entity)
+
         addBlock(entity)
+
+        function detectCollisions(data) {
+            
+        }
     }
 
     function addBlock(block) {

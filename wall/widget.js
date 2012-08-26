@@ -10,6 +10,8 @@ function Widget(x, y) {
 
     return {
         appendTo: appendTo
+        , x: x
+        , y: y
     }
     
     function appendTo(other) {

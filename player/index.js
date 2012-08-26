@@ -14,17 +14,20 @@ module.exports = Player
     Generally you hook the input up to the change requests and you hook the
     state upto the widget for rendering
 */
-function Player() {
+function Player(x, y) {
     var input = ArrowKeys()
-        , widget = Widget()
+        , widget = Widget(x, y)
         , change = PositionChangeStream(SPEED)
-        , stateStream = DeltaStream()
-        , state = stateStream.createObservable()
+        , state = DeltaStream()
         , player = duplex(state, change)
 
     player.appendTo = widget.appendTo
+    player.x = x
+    player.y = y
 
     input.pipe(change)
+
+    state.pipe(widget)
 
     return player
 }

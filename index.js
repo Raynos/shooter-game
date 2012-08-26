@@ -4,7 +4,7 @@ var Map = require("./map")
     , body = document.body
 
 var map = Map()
-    , player = Player()
+    , player = Player(50, 50)
 
 map.addEntity(player)
 

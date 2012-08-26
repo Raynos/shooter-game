@@ -1,13 +1,21 @@
 var Element = require("svg")
+    , svg = require("./player")
+    , AttributeStream = require("./attribute")
 
 module.exports = Widget
 
-function Widget() {
-    
-    
-    return {
-        appendTo: appendTo
-    }
+function Widget(x, y) {
+    var elem = Element(svg)
+        , stream = AttributeStream(elem)
 
-    function appendTo() {}
+    elem.setAttribute("x", x)
+    elem.setAttribute("y", y)
+
+    stream.appendTo = appendTo
+
+    return stream
+
+    function appendTo(other) {
+        other.appendChild(elem)
+    }
 }
