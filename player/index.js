@@ -1,9 +1,8 @@
-var ArrowKeys = require("arrow-keys")
-    , Widget = require("./widget")
+var Widget = require("./widget")
     , DeltaStream = require("delta-stream")
-    , PositionChangeStream = require("./positionChange")
+    , ArrowKeys = require("arrow-keys")
     , duplex = require("duplexer")
-    , SPEED = 1
+    , SPEED = 5
 
 module.exports = Player
 
@@ -17,17 +16,11 @@ module.exports = Player
 function Player(x, y) {
     var input = ArrowKeys()
         , widget = Widget(x, y)
-        , change = PositionChangeStream(SPEED)
-        , state = DeltaStream()
-        , player = duplex(state, change)
+        , player = duplex(widget, input)
 
     player.appendTo = widget.appendTo
     player.x = x
     player.y = y
-
-    input.pipe(change)
-
-    state.pipe(widget)
 
     return player
 }
