@@ -17,10 +17,12 @@
     "email": "raynos2@gmail.com"
   },
   "dependencies": {
-    "browserify-server": "~1.1.1",
+    "browserify-server": "~1.1.2",
     "delta-stream": "~0.1.0",
     "live-reload": "0.0.1",
-    "through": "~0.1.4"
+    "through": "~0.1.4",
+    "fragment": "~0.2.0",
+    "svg": "0.0.1"
   },
   "devDependencies": {},
   "licenses": [

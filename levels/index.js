@@ -1,0 +1,45 @@
+var Wall = require("../wall")
+    , SIZE = 20
+    , tileTypes = {
+        "E": noop
+        , "W": Wall
+    }
+
+/* map is 600 x 400. Size is 20 so we have 30 x 20 tiles */
+var visual = [
+    "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"
+    , "WEEEEEEEEEEEEEEEEEEEEEEEEEEEEW"
+    , "WEEEEEEEEEEEEEEEEEEEEEEEEEEEEW"
+    , "WEEEEEEEEEEEEEEEEEEEEEEEEEEEEW"
+    , "WEEEEEEEEEEEEEEEEEEEEEEEEEEEEW"
+    , "WEEEEEEEEEEEEEEEEEEEEEEEEEEEEW"
+    , "WEEEEEEEEEEEEEEEEEEEEEEEEEEEEW"
+    , "WEEEEEEEEEEEEEEEEEEEEEEEEEEEEW"
+    , "WEEEEEEEEEEEEEEEEEEEEEEEEEEEEW"
+    , "WEEEEEEEEEEEEEEEEEEEEEEEEEEEEW"
+    , "WEEEEEEEEEEEEEEEEEEEEEEEEEEEEW"
+    , "WEEEEEEEEEEEEEEEEEEEEEEEEEEEEW"
+    , "WEEEEEEEEEEEEEEEEEEEEEEEEEEEEW"
+    , "WEEEEEEEEEEEEEEEEEEEEEEEEEEEEW"
+    , "WEEEEEEEEEEEEEEEEEEEEEEEEEEEEW"
+    , "WEEEEEEEEEEEEEEEEEEEEEEEEEEEEW"
+    , "WEEEEEEEEEEEEEEEEEEEEEEEEEEEEW"
+    , "WEEEEEEEEEEEEEEEEEEEEEEEEEEEEW"
+    , "WEEEEEEEEEEEEEEEEEEEEEEEEEEEEW"
+    , "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"
+]
+
+module.exports = Level
+
+function Level(map) {
+    visual.forEach(function (row, y) {
+        for (var x = 0; x < row.length; x++) {
+            var block = tileTypes[row[x]](x * SIZE, y * SIZE)
+            if (block) {
+                map.addBlock(block)
+            }
+        }
+    })
+}
+
+function noop() {}

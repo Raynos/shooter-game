@@ -14,7 +14,6 @@ module.exports = Input
 
 function Input() {
     var stream = through()
-        , observable = stream.createObservable()
 
     window.addEventListener("keydown", listenOnKeys)
 
