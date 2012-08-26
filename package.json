@@ -22,7 +22,8 @@
     "live-reload": "0.0.1",
     "through": "~0.1.4",
     "fragment": "~0.2.0",
-    "svg": "0.0.1"
+    "svg": "0.0.1",
+    "arrow-keys": "0.0.1"
   },
   "devDependencies": {},
   "licenses": [

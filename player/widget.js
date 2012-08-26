@@ -1,3 +1,5 @@
+var Element = require("svg")
+
 module.exports = Widget
 
 function Widget() {
