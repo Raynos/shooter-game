@@ -1,5 +1,4 @@
 var Widget = require("./widget")
-    , DeltaStream = require("delta-stream")
     , ArrowKeys = require("arrow-keys")
     , duplex = require("duplexer")
     , SPEED = 5

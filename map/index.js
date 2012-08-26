@@ -30,7 +30,50 @@ function Map() {
         */
         function detectCollisions(data) {
             //console.log("got changes", data)
+            var changes = data[0]
+                , diffX = changes.x || 0
+                , diffY = changes.y || 0
+                , newX = (entity.x += diffX)
+                , newY = (entity.y += diffY)
+                , loc = getGrid(newX, newY)
+                , list = blocks[loc]
 
+            var isValid = collision(entity, list)
+
+            if (isValid) {
+                var previousLoc = getGrid(entity.x, entity.y)
+
+                if (previousLoc !== loc) {
+                    delete blocks[previousLoc]
+                    blocks[loc] = entity
+                }
+
+                entity.x = newX
+                entity.y = newY
+
+                this.emit("data", [{
+                    x: newX
+                    , y: newY
+                }, data[1], data[2]])
+            } else {
+                entity.x -= diffX
+                entity.y -= diffY
+            }
+        }
+
+        function collision(block, list) {
+            if (!list) {
+                return true
+            }
+
+            return list.every(function (other) {
+                if (block === other) {
+                    return true
+                }
+            })
+        }
+
+        function update(stream, data) {
             var changes = data[0]
                 , diffX = changes.x || 0
                 , diffY = changes.y || 0
@@ -38,7 +81,7 @@ function Map() {
             entity.x += diffX
             entity.y += diffY
 
-            this.emit("data", [{
+            stream.emit("data", [{
                 x: entity.x
                 , y: entity.y
             }, data[1], data[2]])
@@ -46,8 +89,7 @@ function Map() {
     }
 
     function addBlock(block) {
-        var gridPoint = getGrid(block)
-            , loc = gridPoint.x + ":" + gridPoint.y
+        var loc = getGrid(block.x, block.y)
             , list = blocks[loc]
 
         if (list) {
@@ -60,14 +102,9 @@ function Map() {
     }
 }
 
-function getGrid(point) {
-    var x = point.x
-        , y = point.y
-        , diffX = x % 20
+function getGrid(x, y) {
+    var diffX = x % 20
         , diffY = y % 20
 
-    return {
-        x: x - diffX
-        , y: y - diffY
-    }
+    return (x - diffX) + ":" + (y - diffY)
 }

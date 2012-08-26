@@ -1,6 +1,6 @@
 var Element = require("svg")
     , svg = require("./player")
-    , AttributeStream = require("./attribute")
+    , AttributeStream = require("attribute")
 
 module.exports = Widget
 
