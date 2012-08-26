@@ -72,20 +72,6 @@ function Map() {
                 }
             })
         }
-
-        function update(stream, data) {
-            var changes = data[0]
-                , diffX = changes.x || 0
-                , diffY = changes.y || 0
-
-            entity.x += diffX
-            entity.y += diffY
-
-            stream.emit("data", [{
-                x: entity.x
-                , y: entity.y
-            }, data[1], data[2]])
-        }
     }
 
     function addBlock(block) {
