@@ -36,9 +36,8 @@ function Map() {
                 , newX = (entity.x += diffX)
                 , newY = (entity.y += diffY)
                 , loc = getGrid(newX, newY)
-                , list = blocks[loc]
 
-            var isValid = !collision(entity, list)
+            var isValid = !collision(entity, loc)
 
             if (isValid) {
                 var previousLoc = getGrid(entity.x, entity.y)
@@ -62,18 +61,18 @@ function Map() {
         }
 
         /*
+            Should do a proper spatial query instead of just blocks[loc]
+
             Returns true if there is a collison
         */
-        function collision(block, list) {
+        function collision(block, loc) {
+            var list = blocks[loc]
+
             if (!list) {
                 return false
             }
 
-            return list.some(checkCollision, block)
-        }
-
-        function checkCollision(other) {
-            if (this === other) {
+            if (list.length === 1 && list[0] === block) {
                 return false
             }
 
